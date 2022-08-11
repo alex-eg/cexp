@@ -1,0 +1,35 @@
+(include "stdio.h")
+
+(fn foo i32 ((a i32) (b i32))
+  (return + a b))
+
+(struct point
+  x f32
+  y f32)
+
+(struct line
+  start point
+  end point)
+
+(fn add-points point ((a *point) (b *point))
+  (var ret point)
+  (set ret/x (+ a/x b/x)
+       ret/y (+ a/y b/y))
+  (return ret))
+
+(fn alloc-points *point ((n u32))
+  (return (malloc (* n (sizeof point)))))
+
+(fn free-and-null void ((p **point))
+  (free @p)
+  (set @p null))
+
+(fn test void ()
+  (var p *point (alloc-points 1))
+  (free-and-null &p)
+  (assert (= p null)))
+
+(fn main i32 ()
+  (test)
+  (printf "Hello world! %d %d~n" 1 2)
+  (return 0))
