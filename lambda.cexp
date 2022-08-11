@@ -1,0 +1,11 @@
+(include "stdio.h")
+
+(fn main () -> int
+    (int i 12)
+    (int j 34)
+    (lambda foo (i &j) ()
+            (set i 56)
+            (set j 78)
+            (printf "Inside foo: %d %d" i j))
+    (printf "Outside foo: %d %d" i j)
+    (return 0))

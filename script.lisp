@@ -1,0 +1,5 @@
+(load "~/.sbclrc")
+(ql:quickload :cexp :silent t)
+(in-package :cexp)
+(let ((forms (uiop:read-file-forms (cadr sb-ext:*posix-argv*))))
+  (format t "~a" (cexp::process forms)))
