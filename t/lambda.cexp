@@ -1,7 +1,7 @@
 (include "stdio.h")
 
 (fn main () -> int
-    (var i int)
-    (var j (ptr const int))
-    (printf "Outside foo: %d %d" i j)
+    (var i (int))
+    (var j ((ptr const int)))
+    (printf "i: %lp %d j: %lp %d~n" (addr i) i j (deref j))
     (return 0))
